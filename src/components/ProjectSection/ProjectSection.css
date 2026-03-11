@@ -1,0 +1,103 @@
+.project {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(160deg, var(--color-primary-lightest) 0%, var(--color-white) 60%);
+}
+
+.project-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.project-image {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 4/3;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-slow);
+}
+
+.project-image:hover img {
+    transform: scale(1.03);
+}
+
+.project-badge {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: var(--color-primary-dark);
+    color: var(--color-white);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+    box-shadow: var(--shadow-md);
+}
+
+.project-badge span {
+    font-size: 0.75rem;
+    opacity: 0.75;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.project-badge strong {
+    font-family: var(--font-body);
+    font-size: var(--font-size-body);
+    font-weight: 700;
+    color: var(--color-primary-light);
+}
+
+.project-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.project-content h2 {
+    color: var(--color-primary-dark);
+}
+
+.project-content p {
+    color: var(--color-neutral-gray);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 100%;
+}
+
+.project-cta {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    padding: 0.9rem 2rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-medium) 100%);
+    color: var(--color-white);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    width: fit-content;
+}
+
+.project-cta:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .project-body {
+        grid-template-columns: 1fr;
+    }
+}

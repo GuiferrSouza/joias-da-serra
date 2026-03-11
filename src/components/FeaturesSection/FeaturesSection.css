@@ -1,0 +1,106 @@
+.features {
+    position: relative;
+    padding: var(--spacing-xl) 0;
+    overflow: hidden;
+}
+
+.features-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    z-index: -1;
+}
+
+.features-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 70% 80%, rgba(79, 206, 255, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 10%, rgba(79, 206, 255, 0.06) 0%, transparent 45%);
+}
+
+.features-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.features-header h2 {
+    color: var(--color-white);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-sm);
+}
+
+/* Last row: 2 cards — center them */
+.features-grid > *:nth-child(4) {
+    grid-column: 1 / 2;
+}
+.features-grid > *:nth-child(5) {
+    grid-column: 2 / 3;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(79, 206, 255, 0.15);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem 1.5rem;
+    transition: background var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.feature-card:hover {
+    background: rgba(79, 206, 255, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--border-radius-md);
+    background: rgba(79, 206, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--color-primary-light);
+    flex-shrink: 0;
+}
+
+.feature-card h3 {
+    color: var(--color-white);
+    font-size: var(--font-size-body);
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+
+.feature-card p {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .features-grid > *:nth-child(4),
+    .features-grid > *:nth-child(5) {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Glitten';
+    src: url('./assets/fonts/Glitten-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    font-variant-ligatures: none;
+    font-feature-settings:
+        "liga" 0,
+        "clig" 0,
+        "calt" 0,
+        "kern" 0;
+}
+
+@font-face {
+    font-family: 'GlacialIndifference';
+    src: url('./assets/fonts/GlacialIndifference-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
