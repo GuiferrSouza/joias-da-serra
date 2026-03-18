@@ -1,70 +1,258 @@
+/* ─── Outdoor ─────────────────────────────────────────── */
 .outdoor {
-    padding: var(--spacing-xl) 0;
-    background: var(--color-primary-lightest);
-}
-
-.outdoor-header {
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
-}
-
-.outdoor-header h2 {
-    margin-bottom: var(--spacing-xs);
-}
-
-.outdoor-header p {
-    color: var(--color-neutral-gray);
-    max-width: 480px;
-    margin: 0 auto;
-}
-
-.outdoor-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-sm);
-}
-
-.outdoor-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    cursor: default;
-}
-
-.outdoor-image {
-    border-radius: var(--border-radius-lg);
+    position: relative;
+    width: 100%;
+    min-height: 100dvh;
     overflow: hidden;
-    aspect-ratio: 3/2;
-    box-shadow: var(--shadow-md);
+    background: #1a1a1a;
 }
 
-.outdoor-image img {
+/* ─── Slides ──────────────────────────────────────────── */
+.outdoor-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+}
+
+.outdoor-slide--active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.outdoor-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform var(--transition-slow);
 }
 
-.outdoor-item:hover .outdoor-image img {
-    transform: scale(1.05);
+/* Placeholder */
+.outdoor-slide__placeholder {
+    width: 100%;
+    height: 100%;
+    background: #111820;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.outdoor-item figcaption {
-    text-align: center;
-    font-size: var(--font-size-small);
-    color: var(--color-neutral-gray);
-    font-weight: 500;
+.outdoor-slide__placeholder span {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(6rem, 20vw, 16rem);
+    color: rgba(255, 255, 255, 0.04);
+    letter-spacing: -0.02em;
+    line-height: 1;
 }
 
+/* ─── Overlay ─────────────────────────────────────────── */
+.outdoor-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(8, 14, 22, 0.55) 0%,
+            rgba(8, 14, 22, 0.0) 35%,
+            rgba(8, 14, 22, 0.0) 55%,
+            rgba(8, 14, 22, 0.75) 100%
+        );
+    pointer-events: none;
+}
+
+/* ─── Header — topo esquerdo ──────────────────────────── */
+.outdoor-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    padding: var(--spacing-xl) var(--spacing-xl) 0;
+}
+
+.outdoor-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-primary-light);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.outdoor-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    margin: 0;
+}
+
+/* ─── Footer — base ───────────────────────────────────── */
+.outdoor-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0 var(--spacing-xl) var(--spacing-lg);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.outdoor-footer__left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Caption */
+.outdoor-caption {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    animation: captionFade 0.5s ease both;
+}
+
+@keyframes captionFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Dots */
+.outdoor-dots {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.outdoor-dot {
+    width: 24px;
+    height: 1px;
+    border: none;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    padding: 0;
+    transition: all var(--transition-normal);
+}
+
+.outdoor-dot--active {
+    background: rgba(255, 255, 255, 0.8);
+    width: 40px;
+}
+
+/* ─── Navegação — canto inferior direito ─────────────── */
+.outdoor-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.outdoor-nav__count {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: 'Cormorant Garamond', serif;
+    margin-right: 0.5rem;
+}
+
+.outdoor-nav__count strong {
+    font-size: 1.75rem;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -0.01em;
+}
+
+.outdoor-nav__count em {
+    font-style: normal;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.04em;
+}
+
+.outdoor-nav__btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.outdoor-nav__btn:hover {
+    border-color: rgba(255, 255, 255, 0.55);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Barra de progresso ──────────────────────────────── */
+.outdoor-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    z-index: 3;
+}
+
+.outdoor-progress__bar {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    animation: progressBar 5s linear both;
+    transform-origin: left;
+}
+
+@keyframes progressBar {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
 @media (max-width: 768px) {
-    .outdoor-gallery {
-        grid-template-columns: 1fr 1fr;
+    .outdoor-header {
+        padding: var(--spacing-lg) var(--spacing-md) 0;
+    }
+
+    .outdoor-footer {
+        padding: 0 var(--spacing-md) var(--spacing-md);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .outdoor-nav {
+        align-self: flex-end;
     }
 }
 
 @media (max-width: 480px) {
-    .outdoor-gallery {
-        grid-template-columns: 1fr;
+    .outdoor-header {
+        padding: var(--spacing-md) 1.5rem 0;
+    }
+
+    .outdoor-footer {
+        padding: 0 1.5rem var(--spacing-md);
+    }
+
+    .outdoor-header h2 {
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
     }
 }

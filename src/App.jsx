@@ -6,7 +6,7 @@ import HeaderSection from './components/HeaderSection';
 import HeroSection from './components/HeroSection';
 import LocationSection from './components/LocationSection';
 import OutdoorSection from './components/OutdoorSection';
-import PlansSection from './components/PlanSection/PlansSection';
+import PlansSection from './components/PlansSection';
 import ProjectSection from './components/ProjectSection';
 import TourSection from './components/TourSection';
 

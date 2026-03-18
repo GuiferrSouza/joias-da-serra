@@ -1,43 +1,63 @@
-import AnimateOnScroll from "../AnimateOnScroll";
-// import projectRender from "../../assets/images/project-render.png";
+import projectRender from "../../assets/images/building.png";
 import "./ProjectSection.css";
+
+const specs = [
+    { value: "2", label: "Tipologias" },
+    { value: "50–52m²", label: "Metragem" },
+    { value: "Dez/27", label: "Entrega" },
+];
+
+const features = [
+    "Acabamentos de alto padrão",
+    "Plantas funcionais e bem distribuídas",
+    "Infraestrutura completa no condomínio",
+];
 
 export default function ProjectSection() {
     return (
         <section className="project" id="o-projeto">
-            <div className="container">
-                <div className="project-body">
-                    <AnimateOnScroll animation="fade-in-left" delay={0.2}>
-                        <div className="project-image">
-                            <img alt="Render do edifício Joias da Serra" />
-                            <div className="project-badge">
-                                <span>Entrega</span>
-                                <strong>Dez / 2027</strong>
-                            </div>
-                        </div>
-                    </AnimateOnScroll>
 
-                    <AnimateOnScroll animation="fade-in-right" delay={0.3}>
-                        <div className="project-content">
-                            <span className="section-label">O Projeto</span>
-                            <h2>Pensado para o seu dia a dia</h2>
-                            <p>
-                                Um projeto residencial desenvolvido com foco em funcionalidade,
-                                conforto e aproveitamento inteligente dos espaços. Cada detalhe foi
-                                pensado para oferecer uma experiência de morar prática, segura e
-                                bem planejada.
-                            </p>
-                            <p>
-                                Com plantas inteligentes e acabamentos de qualidade, o Joias da Serra
-                                entrega o que realmente importa: um lar que funciona para você.
-                            </p>
-                            <a href="#plantas" className="project-cta shiny">
-                                Conheça as plantas
-                            </a>
-                        </div>
-                    </AnimateOnScroll>
-                </div>
+            {/* Imagem ocupa tudo */}
+            <div className="project-visual">
+                <img src={projectRender} alt="Render do edifício Joias da Serra" />
+                <div className="project-overlay" />
             </div>
+
+            {/* Sidebar direita sobreposta */}
+            <aside className="project-sidebar">
+                <div className="project-sidebar__content">
+
+                    <p className="project-eyebrow">O Projeto</p>
+                    <h2>Pensado para<br />o seu dia a dia</h2>
+
+                    <p className="project-text">
+                        Um projeto residencial desenvolvido com foco em
+                        funcionalidade, conforto e aproveitamento inteligente
+                        dos espaços. Cada detalhe foi pensado para oferecer
+                        uma experiência de morar prática, segura e bem planejada.
+                    </p>
+
+                    <ul className="project-features">
+                        {features.map((f, i) => (
+                            <li key={i}>
+                                <span className="feature-line" />
+                                {f}
+                            </li>
+                        ))}
+                    </ul>
+
+                    <div className="project-specs">
+                        {specs.map((s, i) => (
+                            <div key={i} className="spec-item">
+                                <strong>{s.value}</strong>
+                                <span>{s.label}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+            </aside>
+
         </section>
     );
 }

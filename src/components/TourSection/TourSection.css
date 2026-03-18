@@ -1,106 +1,218 @@
+/* ─── Tour ────────────────────────────────────────────── */
 .tour {
     position: relative;
-    padding: var(--spacing-xl) 0;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
 }
 
+/* ─── Background borrado ──────────────────────────────── */
 .tour-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-accent-purple) 100%);
-    z-index: -1;
+    z-index: 0;
 }
 
-.tour-bg::after {
+.tour-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: blur(12px) brightness(0.6);
+    transform: scale(1.08); /* evita borda branca do blur */
+}
+
+.tour-bg__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 14, 22, 0.55);
+}
+
+/* ─── Conteúdo central ────────────────────────────────── */
+.tour-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    max-width: 560px;
+}
+
+.tour-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-primary-light);
+    opacity: 0.85;
+    margin-bottom: 1.25rem;
+}
+
+.tour-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.05;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+}
+
+.tour-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 3rem;
+    max-width: 380px;
+}
+
+/* ─── Botão iniciar ───────────────────────────────────── */
+.tour-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 1px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: border-color var(--transition-normal), color var(--transition-normal);
+}
+
+.tour-btn::before {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(ellipse at 20% 50%, rgba(79, 206, 255, 0.15) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(79, 206, 255, 0.08) 0%, transparent 50%);
+    background: rgba(255, 255, 255, 0.06);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.tour-header {
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
-    color: var(--color-white);
+.tour-btn:hover::before {
+    transform: scaleX(1);
 }
 
-.tour-header h2 {
-    color: var(--color-white);
-    margin-bottom: var(--spacing-xs);
+.tour-btn:hover {
+    border-color: rgba(255, 255, 255, 0.55);
+    color: #ffffff;
 }
 
-.tour-header p {
-    color: rgba(255, 255, 255, 0.75);
-    max-width: 520px;
-    margin: 0 auto;
-}
-
-.section-label--light {
+.tour-btn__icon {
+    font-size: 0.65rem;
     color: var(--color-primary-light);
+    position: relative;
+    transition: transform var(--transition-normal);
 }
 
-.tour-embed {
+.tour-btn:hover .tour-btn__icon {
+    transform: scale(1.2);
+}
+
+/* ─── Modal ───────────────────────────────────────────── */
+.tour-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(8, 14, 22, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    /* Estado inicial (antes de --visible) */
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tour-modal--visible {
+    opacity: 1;
+}
+
+.tour-modal__box {
     position: relative;
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 1100px;
     aspect-ratio: 16/9;
-    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     overflow: hidden;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(79, 206, 255, 0.2);
+
+    /* Estado inicial */
+    transform: scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.tour-embed iframe {
+.tour-modal--visible .tour-modal__box {
+    transform: scale(1);
+}
+
+.tour-modal__box iframe {
     width: 100%;
     height: 100%;
     border: none;
     display: block;
 }
 
-/* Placeholder shown when the iframe has no valid src */
-.tour-placeholder {
+/* Botão fechar */
+.tour-modal__close {
     position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    background: rgba(17, 42, 61, 0.85);
-    color: rgba(255, 255, 255, 0.5);
-    pointer-events: none;
-    font-size: 1rem;
-    letter-spacing: 0.04em;
+    top: -2.5rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    padding: 0.25rem 0;
+    transition: color var(--transition-fast);
+    z-index: 1;
 }
 
-.tour-placeholder svg {
-    font-size: 3rem;
-    color: var(--color-primary-light);
-    opacity: 0.5;
+.tour-modal__close:hover {
+    color: rgba(255, 255, 255, 0.9);
 }
 
-.tour-cta {
-    text-align: center;
-    margin-top: var(--spacing-md);
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .tour-modal {
+        padding: 1rem;
+        align-items: center;
+    }
+
+    .tour-modal__box {
+        aspect-ratio: 4/3;
+    }
+
+    .tour-modal__close {
+        top: -2rem;
+        font-size: 0.7rem;
+    }
 }
 
-.tour-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.9rem 2.5rem;
-    background: var(--color-primary-light);
-    color: var(--color-primary-dark);
-    border-radius: var(--border-radius-md);
-    font-size: var(--font-size-small);
-    font-weight: 700;
-    box-shadow: 0 4px 20px rgba(79, 206, 255, 0.35);
-    transition: all var(--transition-normal);
-}
-
-.tour-cta-btn:hover {
-    box-shadow: 0 8px 32px rgba(79, 206, 255, 0.5);
-    transform: translateY(-2px);
+@media (max-width: 480px) {
+    .tour-modal__box {
+        aspect-ratio: 9/16;
+        max-height: 80dvh;
+    }
 }

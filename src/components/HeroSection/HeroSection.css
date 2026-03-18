@@ -1,101 +1,181 @@
+/* ─── Hero ────────────────────────────────────────────── */
 .hero {
     position: relative;
     min-height: 100dvh;
     display: flex;
-    align-items: center;
-    padding: 80px 2rem 2rem;
+    align-items: flex-end;
+    padding: 0 0 8vh;
     overflow: hidden;
 }
 
+/* Imagem de fundo */
 .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-
     background:
-        linear-gradient(to left,
-            rgba(0, 0, 0, 0.8) 0%,
-            rgba(0, 0, 0, 0.6) 30%,
-            rgba(0, 0, 0, 0.4) 55%,
-            rgba(0, 0, 0, 0.2) 75%,
-            rgba(0, 0, 0, 0) 100%),
-        url("../../assets/images/backyard.png");
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
+        url("../../assets/images/backyard.png") center / cover no-repeat;
     transform: scaleX(-1);
-    z-index: -1;
+    z-index: 0;
 }
 
+/* Overlay escuro — mais sutil, concentrado na esquerda/baixo */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            to right,
+            rgba(8, 14, 22, 0.82) 0%,
+            rgba(8, 14, 22, 0.55) 45%,
+            rgba(8, 14, 22, 0.15) 100%
+        ),
+        linear-gradient(
+            to top,
+            rgba(8, 14, 22, 0.6) 0%,
+            transparent 50%
+        );
+    z-index: 1;
+}
+
+/* ─── Content ─────────────────────────────────────────── */
 .hero-content {
-    padding: 18px clamp(16px, 5vw, 73px) 16px;
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(1.5rem, 6vw, 5rem);
+    max-width: 680px;
 }
 
-h1 {
-    margin-bottom: 1rem;
-    color: var(--color-primary-lightest) !important;
+/* Título */
+.hero-content h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    line-height: 1.0;
+    color: #ffffff;
+    margin-bottom: 1.75rem;
+    letter-spacing: -0.01em;
 }
 
-h1 span {
+.hero-content span {
     display: block;
 }
 
-p {
-    font-size: var(--font-size-body);
-    margin-bottom: 2rem;
-    max-width: 500px;
-    color: var(--color-primary-lightest);
+.title1 {
+    opacity: 0.6;
 }
 
+.title2 {
+    opacity: 1;
+}
+
+/* Subtítulo */
+.hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    font-weight: 300;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 380px;
+    margin-bottom: 3rem;
+}
+
+/* ─── Actions ─────────────────────────────────────────── */
 .hero-actions {
     display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-}
-
-button {
-    padding: 1rem 2rem;
-    background: none;
-    border: 2px solid var(--color-primary-lightest);
-    font-size: var(--font-size-body);
-    cursor: pointer;
-    transition: 0.2s ease;
-    color: var(--color-primary-lightest);
-}
-
-.hero-features {
-    display: flex;
-    gap: 1rem 2rem;
-    width: fit-content;
-    flex-wrap: wrap;
-    padding-top: 1rem;
-    border-top: 2px solid #ffffff36;
-}
-
-.feature {
-    display: flex;
     align-items: center;
-    gap: 0.75rem;
-    color: var(--color-primary-lightest);
-    font-size: var(--font-size-small);
-    font-weight: 500;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
-.feature svg {
-    font-size: var(--font-size-body);
-    color: var(--color-primary-lightest);
-    flex-shrink: 0;
-}
+/* Botão primário — preenchido, fino */
+.btn-primary {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(10, 16, 26, 0.9);
 
-.feature span {
+    padding: 0.9rem 2.25rem;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid transparent;
+    border-radius: 1px;
+
+    transition: all var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal);
     white-space: nowrap;
 }
 
+.btn-primary:hover {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Botão ghost — apenas texto com seta */
+.btn-ghost {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    /* padding: 0; */
+    padding: 0.9rem;
+    background: none;
+    border: none;
+
+    transition: color var(--transition-normal);
+}
+
+.btn-ghost:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-arrow {
+    display: inline-block;
+    transition: transform var(--transition-normal);
+    font-style: normal;
+}
+
+.btn-ghost:hover .btn-arrow {
+    transform: translateX(5px);
+}
+
+/* ─── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .hero {
+        align-items: flex-end;
+        padding-bottom: 6vh;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(3rem, 12vw, 4rem);
+    }
+}
+
 @media (max-width: 480px) {
-    button{
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .btn-primary {
         width: 100%;
+        text-align: center;
+    }
+
+    .hero-scroll-indicator {
+        display: none;
     }
 }

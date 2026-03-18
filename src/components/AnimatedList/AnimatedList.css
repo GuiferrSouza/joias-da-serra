@@ -1,0 +1,124 @@
+.animated-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: var(--spacing-xs);
+    padding: 0;
+}
+
+.animated-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    color: var(--color-neutral-gray);
+}
+
+.feature-text {
+    display: inline-block;
+    transform-origin: left center;
+}
+
+.feature-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    opacity: 0.35;
+    flex-shrink: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease, all 0.4s ease;
+}
+
+.animated-list--animated li {
+    animation: fl-color calc(var(--step) * var(--items)) ease-in-out infinite;
+    animation-delay: calc(var(--step) * var(--i));
+}
+
+.animated-list--animated .feature-text {
+    animation: fl-scale calc(var(--step) * var(--items)) ease-in-out infinite;
+    animation-delay: calc(var(--step) * var(--i));
+}
+
+.animated-list--animated .feature-dot {
+    animation: fl-dot calc(var(--step) * var(--items)) ease-in-out infinite;
+    animation-delay: calc(var(--step) * var(--i));
+}
+
+@keyframes fl-color {
+
+    0%,
+    100% {
+        color: var(--color-neutral-gray);
+    }
+
+    5% {
+        color: var(--color-primary-dark);
+    }
+
+    28% {
+        color: var(--color-primary-dark);
+    }
+
+    38% {
+        color: var(--color-neutral-gray);
+    }
+}
+
+@keyframes fl-scale {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    5% {
+        transform: scale(1.08);
+    }
+
+    28% {
+        transform: scale(1.08);
+    }
+
+    38% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fl-dot {
+
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: scale(1);
+        background: var(--color-primary);
+    }
+
+    5% {
+        opacity: 1;
+        transform: scale(1.5);
+        background: var(--color-primary-light);
+    }
+
+    28% {
+        opacity: 1;
+        transform: scale(1.5);
+        background: var(--color-primary-light);
+    }
+
+    38% {
+        opacity: 0.35;
+        transform: scale(1);
+        background: var(--color-primary);
+    }
+}
+
+.animated-list--all-focused li {
+    color: var(--color-primary-dark);
+}
+
+.animated-list--all-focused .feature-dot {
+    opacity: 1;
+    background: var(--color-primary-light);
+}

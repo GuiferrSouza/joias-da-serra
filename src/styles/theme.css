@@ -54,6 +54,12 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+section {
+    /* min-height: 100dvh; */
+    position: relative;
+    overflow: hidden;
+}
+
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -78,6 +84,13 @@ h6 {
     font-weight: 600;
     line-height: 1.2;
     color: var(--color-primary-dark);
+    cursor: default;
+}
+
+p,
+li,
+span {
+    cursor: default;
 }
 
 h1 {
@@ -94,6 +107,11 @@ h3 {
 
 a {
     text-decoration: none;
+}
+
+a *,
+button * {
+    pointer-events: none;
 }
 
 img {
@@ -139,4 +157,9 @@ button {
 
 .shiny:hover::before {
     left: 100%;
+}
+
+.main-swiper {
+    width: 100dvw;
+    height: 100dvh;
 }

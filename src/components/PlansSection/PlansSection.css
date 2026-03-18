@@ -1,0 +1,285 @@
+/* ─── Plans ───────────────────────────────────────────── */
+.plans {
+    background: var(--color-white);
+    width: 100%;
+}
+
+/* ─── Layout full-width ───────────────────────────────── */
+.plans-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+}
+
+/* ─── Sidebar ─────────────────────────────────────────── */
+.plans-sidebar {
+    background: var(--color-primary-dark);
+    padding: var(--spacing-xl) 2.25rem;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+}
+
+.plans-sidebar__top {
+    margin-bottom: 3rem;
+}
+
+.plans-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-primary-light);
+    opacity: 0.7;
+    margin-bottom: 1rem;
+}
+
+.plans-sidebar h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.75rem, 2.2vw, 2.25rem);
+    line-height: 1.1;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    margin: 0 0 1rem;
+}
+
+.plans-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0;
+}
+
+/* ─── Cômodos ─────────────────────────────────────────── */
+.plans-rooms {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    transition: opacity 0.32s ease;
+}
+
+.plans-rooms--fading {
+    opacity: 0;
+}
+
+.plans-room {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    cursor: default;
+    transition: padding-left var(--transition-normal);
+}
+
+.plans-room:hover {
+    padding-left: 0.3rem;
+}
+
+.plans-room__icon {
+    color: var(--color-primary-light);
+    opacity: 0.4;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    display: flex;
+}
+
+.plans-room__name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* ─── CTA ─────────────────────────────────────────────── */
+.plans-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid rgba(79, 206, 255, 0.18);
+    border-radius: 1px;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.plans-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(79, 206, 255, 0.05);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.plans-cta:hover::before {
+    transform: scaleX(1);
+}
+
+.plans-cta:hover {
+    border-color: rgba(79, 206, 255, 0.4);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.plans-cta__arrow {
+    display: inline-block;
+    position: relative;
+    transition: transform var(--transition-normal);
+}
+
+.plans-cta:hover .plans-cta__arrow {
+    transform: translateX(4px);
+}
+
+/* ─── Canvas wrap ─────────────────────────────────────── */
+.plans-canvas-wrap {
+    position: relative;
+    background: #f0ede8;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* ─── Switcher sobreposto ─────────────────────────────── */
+.plans-switcher {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 2;
+    display: flex;
+    border: 1px solid rgba(0, 70, 121, 0.14);
+    border-radius: 1px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.plans-switcher__btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.1rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: background var(--transition-normal);
+}
+
+.plans-switcher__btn + .plans-switcher__btn {
+    border-left: 1px solid rgba(0, 70, 121, 0.12);
+}
+
+.plans-switcher__btn:not(.plans-switcher__btn--active):hover {
+    background: rgba(0, 70, 121, 0.04);
+}
+
+.plans-switcher__btn--active {
+    background: var(--color-primary-dark);
+}
+
+.plans-switcher__label,
+.plans-switcher__sep,
+.plans-switcher__area {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    pointer-events: none;
+    transition: color var(--transition-fast);
+}
+
+.plans-switcher__label  { color: var(--color-primary-dark); }
+.plans-switcher__sep    { color: rgba(0, 70, 121, 0.2); }
+.plans-switcher__area   { color: var(--color-neutral-gray); }
+
+.plans-switcher__btn--active .plans-switcher__label,
+.plans-switcher__btn--active .plans-switcher__area { color: rgba(255, 255, 255, 0.9); }
+.plans-switcher__btn--active .plans-switcher__sep  { color: rgba(255, 255, 255, 0.25); }
+
+/* ─── Canvas ──────────────────────────────────────────── */
+.plans-canvas {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 5rem;
+    transition: opacity 0.32s ease;
+}
+
+.plans-canvas--fading {
+    opacity: 0;
+}
+
+.floor-plan-svg {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 968px) {
+    .plans-layout {
+        grid-template-columns: 220px 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .plans-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: 55vw 1fr;
+        height: auto;
+        max-height: none;
+    }
+
+    .plans-canvas-wrap {
+        order: -1;
+        height: 55vw;
+    }
+
+    .plans-sidebar {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .plans-layout {
+        grid-template-rows: 70vw 1fr;
+    }
+
+    .plans-canvas-wrap {
+        height: 70vw;
+    }
+
+    .plans-switcher {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .plans-switcher__btn {
+        padding: 0.5rem 0.75rem;
+    }
+}

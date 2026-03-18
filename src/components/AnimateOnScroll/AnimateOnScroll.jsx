@@ -1,4 +1,3 @@
-import { cloneElement } from "react";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 
 export default function AnimateOnScroll({
@@ -10,21 +9,19 @@ export default function AnimateOnScroll({
 }) {
     const [ref, isVisible] = useScrollAnimation({ once });
 
-    const styles = {
-        "--animation-delay": `${delay}s`,
-        "--animation-duration": `${duration}s`,
-    };
-
-    return cloneElement(children, {
-        ref,
-        style: {
-            ...children.props.style,
-            ...styles
-        },
-        className: `
-            ${children.props.className || ""}
-            animated
-            ${isVisible ? animation : "opacity-0"}
-    `,
-    });
+    return (
+        <div
+            ref={ref}
+            style={{
+                "--animation-delay": `${delay}s`,
+                "--animation-duration": `${duration}s`,
+            }}
+            className={`
+                animated
+                ${isVisible ? animation : "opacity-0"}
+            `}
+        >
+            {children}
+        </div>
+    );
 }
