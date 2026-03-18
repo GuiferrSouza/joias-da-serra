@@ -141,6 +141,8 @@ footer.footer {
     }
 
     .footer-brand {
+        align-items: center;
+        text-align: center;
         padding: var(--spacing-lg) var(--spacing-md);
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);

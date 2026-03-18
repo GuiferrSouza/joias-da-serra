@@ -19,7 +19,7 @@ export default function HeroSection() {
                         Conheça o projeto
                     </a>
                     <a href="#contato" className="btn-ghost">
-                        Agende um atendimento
+                        <span>Agende um atendimento</span>
                         <span className="btn-arrow">→</span>
                     </a>
                 </div>
